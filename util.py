@@ -5,15 +5,31 @@ def tah (pole, cislo_policka, symbol):
     pozice = 0
     # for cyklus prochází postupně jednotlivá políčka pole od pozice nula. Pokud se při procházení pozice rovná cislu policka, pak vyskoci z funkce a vrátí nové pole se zapsaným symbolem na dané pozici" 
     for i in pole:
-        #print(pozice)
-        if pozice == cislo_policka:
+        # tah v hernim poli
+        if cislo_policka >= 0 and cislo_policka <= 19:
+            pass
+        else:
+            raise ValueError(f"Zadaná pozice {cislo_policka} je mimo hrací pole")
+        
+        # tah na volne pole
+        if pole[cislo_policka] == "-":
+            pass
+        else:
+            raise ValueError(f"Pozice {cislo_policka} je obsazena")   
+
+        # spravny symbol
+        if symbol == "x" or symbol == "o":
+            pass
+        else:
+            raise ValueError(f"Symbol by měl být 'x' nebo 'o'")
+
+        # tah
+        if pozice != cislo_policka:
+                pozice = pozice + 1
+        else:
             nove_pole = pole[:cislo_policka] + symbol + pole[cislo_policka+1 :]
             return(nove_pole)
-        else:
-            pozice = pozice + 1 
-            #print(pozice)
 
 
-
-print(tah("---xo--", 0, "x"))
-print(tah("---xo--", 3, "o"))       # ve fci není ošetřeno, jestli je políčko volné. Takže tento tah přepíše "x" na "o". Bude řešeno
+print(tah("---xo---------------", 10, "x"))
+print(tah("---xo---------------", 3, "o"))
